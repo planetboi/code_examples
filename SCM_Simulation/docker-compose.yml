@@ -1,0 +1,85 @@
+version: "3.7"
+services:
+    lager1:
+        container_name: lager1
+        build: ./lager
+        env_file:
+            - ./env/lager1.env
+        ports:
+            - "30000:8090/udp"
+            - "50000:50000/tcp"
+        depends_on:
+          - mqtt
+        networks:
+            - scm
+    lager2:
+        container_name: lager2
+        build: ./lager
+        env_file:
+            - ./env/lager2.env
+        ports:
+            - "30001:8090/udp"
+            - "50001:50000/tcp"
+        depends_on:
+          - mqtt
+        networks:
+            - scm
+    sensor1:
+        container_name: sensor1
+        build: ./sensor
+        depends_on:
+          - lager1
+        env_file:
+            - ./env/sensor1.env
+        networks:
+            - scm
+    sensor2:
+        container_name: sensor2
+        build: ./sensor
+        depends_on:
+          - lager2
+        env_file:
+            - ./env/sensor2.env
+        networks:
+            - scm
+    mqtt:
+        image: eclipse-mosquitto:latest
+        container_name: mqtt
+        ports:
+            - "1883:1883/tcp"
+        networks:
+            - scm
+        volumes:
+            - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+        #    - /mosquitto/data
+networks:
+    scm:
+        name: scm-net
+        driver: bridge
+#    scmDB:
+#        image: mysql:latest
+#        container_name: db
+#        restart: always
+#        environment:
+#            MYSQL_DATABASE: "db"
+#            MYSQL_ROOT_PASSWORD: "vs2021"
+#        ports:
+#            - "3306:3306"
+#        volumes:
+#            - scmDB:/var/lib/mysql
+#            - ./scmDB/scmDBsetup.sql:/docker-entrypoint-initdb.d/scmDBsetup.sql
+#        networks:
+#          - scm
+    
+#    adminer:
+#        container_name: adminer
+#        image: adminer
+#        restart: always
+#        ports:
+#            - "42000:8080"
+#        networks:
+#          - scm
+
+#volumes:
+#    scmDB:
+

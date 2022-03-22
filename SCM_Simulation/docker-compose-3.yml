@@ -1,0 +1,105 @@
+version: "3.7"
+services:
+    lager1:
+        container_name: lager1
+        build: ./lager
+        env_file:
+            - ./env/lager1.env
+        ports:
+            - "8090/udp"
+            - "50000:50000/tcp"
+        depends_on:
+          - mqtt
+        networks:
+            - scm
+    lager2:
+        container_name: lager2
+        build: ./lager
+        env_file:
+            - ./env/lager2.env
+        ports:
+            - "8090/udp"
+            - "50001:50000/tcp"
+        depends_on:
+          - mqtt
+        networks:
+            - scm
+    lager3:
+        container_name: lager3
+        build: ./lager
+        env_file:
+            - ./env/lager3.env
+        ports:
+            - "8090/udp"
+            - "50002:50000/tcp"
+        depends_on:
+          - mqtt
+        networks:
+            - scm
+    sensor1:
+        container_name: sensor1
+        build: ./sensor
+        depends_on:
+          - lager1
+        env_file:
+            - ./env/sensor1.env
+        networks:
+            - scm
+    sensor2:
+        container_name: sensor2
+        build: ./sensor
+        depends_on:
+          - lager2
+        env_file:
+            - ./env/sensor2.env
+        networks:
+            - scm
+    sensor3:
+        container_name: sensor3
+        build: ./sensor
+        depends_on:
+          - lager3
+        env_file:
+            - ./env/sensor3.env
+        networks:
+            - scm
+    sensor4:
+        container_name: sensor4
+        build: ./sensor
+        depends_on:
+          - lager1
+        env_file:
+            - ./env/sensor4.env
+        networks:
+            - scm
+    sensor5:
+        container_name: sensor5
+        build: ./sensor
+        depends_on:
+          - lager2
+        env_file:
+            - ./env/sensor5.env
+        networks:
+            - scm
+    sensor6:
+        container_name: sensor6
+        build: ./sensor
+        depends_on:
+          - lager3
+        env_file:
+            - ./env/sensor6.env
+        networks:
+            - scm
+    mqtt:
+        image: eclipse-mosquitto:latest
+        container_name: mqtt
+        ports:
+            - "1883:1883/tcp"
+        networks:
+            - scm
+        volumes:
+            - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+networks:
+    scm:
+        name: scm-net
+        driver: bridge
