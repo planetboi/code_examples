@@ -1,5 +1,4 @@
 # Verteilte Systeme in Wintersemester 2021/22
-## HINWEIS: Dies ist nicht das vollständige Protokoll! Für alle Protokolle, siehe oben im Ordner "Protokolle" oder alternativ bei den Abgaben für das Praktikum auf Moodle!
 **Projekt:** Anwendung aus dem Bereich des Logistik bzw. Supply Chain Monitoring
 
 **Autoren:** Anastasia Galeyev, Cheryl Yamoah
