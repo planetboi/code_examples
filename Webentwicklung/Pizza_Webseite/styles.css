@@ -1,0 +1,135 @@
+@media (orientation:landscape) and (min-height: 400px) and (min-width: 600px) {
+    #address{
+        max-width: inherit;
+    }
+
+    img{
+        align-self: center;
+    }
+
+    [name="orderForm"]{
+        position: fixed;
+        max-width:18%;
+        width: fit-content;
+        right: 2%;
+        top:10em;
+    }
+
+    #menuTitle{
+        font: 160% Jazz LET, fantasy;
+    }
+}
+
+@media (orientation:portrait), (max-height: 400px){
+
+    [name="orderForm"]{
+        position: sticky;
+        max-width:fit-content;
+        right: 5%;
+        bottom:5%;
+    }
+
+    #menuTitle{
+        font: 2em Jazz LET, fantasy;
+    }
+}
+
+* {
+    margin: 0.2em;
+    padding: 0.2em;
+    color: black;
+}
+
+body {
+    display: block;
+    font: 120% Helvetica, sans-serif;
+    background-color: #ccddff;
+}
+
+h1 {
+    text-align: center;
+    font: 3em Jazz LET, fantasy;
+    background-color: rgb(85, 97, 165);
+    box-shadow: 0 0 0.1em 0.1em rgb(33, 39, 128);
+    color: white;
+    text-shadow: 0.05em 0.05em rgb(33, 39, 128);
+}
+
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 80%;
+}
+
+.priceText{
+    color:white;
+    text-emphasis: bold;
+    text-align: right;
+}
+
+h3{
+    color:white;
+    text-align: center;
+    text-shadow: 0.05em 0.05em rgb(33, 39, 128);
+}
+
+article {
+    display: block;
+    border-style:double;
+    min-width: fit-content;
+    height: fit-content;
+    border-color: rgb(33, 39, 128);
+    background-color: rgb(85, 97, 165);
+    border-radius: 5%;
+}
+
+#cart {
+    height: fit-content;
+    display: none;
+}
+
+img{
+    width: 10em;
+    height: 7em;
+    max-height: 7em;
+}
+
+[name="orderForm"]{
+    display: block;
+    border-style: double;
+    border-color: rgb(33, 39, 128);
+    height:fit-content;
+    background-color: white;
+}
+
+[name="orderForm"] button {
+    width: 100%;
+}
+
+#menuTitle{
+    position: relative;
+    color: white;
+    text-shadow: 0.05em 0.05em rgb(33, 39, 128);
+}
+
+img:hover {
+    box-shadow: 0 0 0.1em 0.1em white;
+    opacity: 0.7;
+}
+
+#cartLabel{
+    font-weight: bold;
+}
+
+[name="pizza_form"]{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 50%;
+}
+
+.bakerStatus{
+    border-style: double;
+    border-color: rgb(33, 39, 128);
+}
